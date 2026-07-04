@@ -954,6 +954,145 @@ body,
   .bismillah-text{font-size:27px!important;width:82%!important;letter-spacing:-.055em!important;}
 }
 
+
+
+/* SON TESLİM: arka plan + mühür ekranı + müzik dosyası uyumu */
+body,
+#intro,
+.hero,
+.events,
+.map-rsvp,
+.final{
+  background-image:
+    linear-gradient(180deg,rgba(246,239,229,.20),rgba(246,239,229,.42)),
+    url("assets/landscape-bg.jpeg") !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+}
+body,
+.hero,
+.events,
+.map-rsvp,
+.final{
+  background-attachment:fixed !important;
+}
+#intro{
+  position:fixed !important;
+  inset:0 !important;
+  width:100vw !important;
+  height:100svh !important;
+  overflow:hidden !important;
+}
+.envelope{
+  width:100vw !important;
+  height:100svh !important;
+  max-width:none !important;
+  max-height:none !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:
+    linear-gradient(180deg,rgba(246,239,229,.12),rgba(246,239,229,.34)),
+    url("assets/landscape-bg.jpeg") center center/cover no-repeat !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+.envelope::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  background:
+    linear-gradient(38deg, transparent 49.55%, rgba(30,30,30,.22) 50%, transparent 50.45%),
+    linear-gradient(142deg, transparent 49.55%, rgba(30,30,30,.18) 50%, transparent 50.45%),
+    linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.04) 54%,rgba(255,255,255,.28)) !important;
+  pointer-events:none !important;
+}
+.envelope::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  background:rgba(255,244,210,.18) !important;
+  opacity:1 !important;
+  pointer-events:none !important;
+}
+.intro-text{
+  position:absolute !important;
+  inset:0 !important;
+  top:0 !important;
+  z-index:4 !important;
+  padding:0 24px !important;
+  display:block !important;
+  text-align:center !important;
+}
+.intro-text .upper{
+  position:absolute !important;
+  top:23svh !important;
+  left:0 !important;
+  right:0 !important;
+  font-size:clamp(11px,1.65vw,20px) !important;
+  letter-spacing:.42em !important;
+  color:#1d1b18 !important;
+}
+.intro-text .click{
+  position:absolute !important;
+  top:66svh !important;
+  left:0 !important;
+  right:0 !important;
+  font-size:clamp(36px,5.2vw,62px) !important;
+  color:#151412 !important;
+  margin:0 !important;
+}
+.seal{
+  top:50svh !important;
+  left:50% !important;
+  width:clamp(124px,17vw,208px) !important;
+  height:clamp(124px,17vw,208px) !important;
+  z-index:5 !important;
+}
+.seal::after{
+  font-size:clamp(44px,6vw,82px) !important;
+}
+.bismillah-text{
+  position:absolute !important;
+  top:11svh !important;
+  left:50% !important;
+  transform:translateX(-50%) !important;
+  width:min(620px,88vw) !important;
+  margin:0 !important;
+  font-size:clamp(30px,4.7vw,58px) !important;
+  line-height:1.16 !important;
+  letter-spacing:-.045em !important;
+  z-index:4 !important;
+  white-space:nowrap !important;
+  color:#111 !important;
+}
+.scroll-hint{
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  bottom:7svh !important;
+  margin:0 !important;
+  color:rgba(42,39,35,.58) !important;
+  font-size:clamp(10px,1.4vw,15px) !important;
+  letter-spacing:.42em !important;
+}
+@media(max-width:880px){
+  body,.hero,.events,.map-rsvp,.final{background-attachment:scroll !important;}
+  .intro-text .upper{top:24svh !important;font-size:12px !important;letter-spacing:.34em !important;}
+  .intro-text .click{top:66svh !important;font-size:44px !important;}
+  .seal{top:49svh !important;width:132px !important;height:132px !important;}
+  .seal::after{font-size:42px !important;}
+  .bismillah-text{top:11svh !important;width:90vw !important;font-size:32px !important;line-height:1.18 !important;}
+  .scroll-hint{bottom:6svh !important;font-size:11px !important;letter-spacing:.30em !important;}
+}
+@media(max-width:430px){
+  .intro-text .upper{top:24svh !important;font-size:11px !important;letter-spacing:.28em !important;}
+  .intro-text .click{top:65svh !important;font-size:40px !important;}
+  .seal{top:49svh !important;width:122px !important;height:122px !important;}
+  .bismillah-text{top:11svh !important;font-size:27px !important;width:92vw !important;}
+}
+
 </style>
 </head>
 
@@ -1092,6 +1231,7 @@ const musicBtn = document.getElementById("musicBtn");
 async function startMusic(){
   try{
     audio.volume = 0.72;
+    audio.currentTime = audio.currentTime || 0;
     await audio.play();
     musicBtn.classList.add("playing");
   }catch(e){
