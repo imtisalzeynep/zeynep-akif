@@ -1093,6 +1093,17 @@ body,
   .bismillah-text{top:11svh !important;font-size:27px !important;width:92vw !important;}
 }
 
+
+.form-result{
+  grid-column:1/-1;
+  margin:4px 0 0;
+  min-height:24px;
+  font-size:13px;
+  line-height:1.6;
+  color:#2d2925;
+}
+.form-result.success{color:#1f5f2a;font-weight:600;}
+.form-result.error{color:#83251d;font-weight:600;}
 </style>
 </head>
 
@@ -1205,12 +1216,13 @@ body,
       <div class="rsvp-card glass reveal">
         <p class="kicker">Katılım Durumunuz</p>
         <h2 class="rsvp-title">Sizi aramızda görmek isteriz</h2>
-        <form class="rsvp-form" onsubmit="sendRSVP(event)">
-          <input id="name" placeholder="Ad Soyad" required>
-          <select id="status"><option>Katılıyorum</option><option>Katılamıyorum</option></select>
-          <input id="count" type="number" min="1" placeholder="Kişi Sayısı">
-          <textarea id="msg" placeholder="Notunuz (isteğe bağlı)"></textarea>
-          <button class="btn" type="submit">Gönder ↗</button>
+        <form class="rsvp-form" id="rsvpForm" onsubmit="sendRSVP(event)">
+          <input id="name" name="name" placeholder="Ad Soyad" required>
+          <select id="status" name="status"><option>Katılıyorum</option><option>Katılamıyorum</option></select>
+          <input id="count" name="count" type="number" min="1" placeholder="Kişi Sayısı">
+          <textarea id="msg" name="message" placeholder="Notunuz (isteğe bağlı)"></textarea>
+          <button class="btn" id="sendBtn" type="submit">Gönder ↗</button>
+          <p id="formResult" class="form-result" aria-live="polite"></p>
         </form>
       </div>
     </div>
